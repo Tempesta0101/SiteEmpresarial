@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --minify",
-    "dev": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
-    "build:css": "npx tailwindcss -i ./src/styles.css -o ./public/tailwind.css --minify"
+    "dev": "node server.js",
+    "start": "node server.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.23",
