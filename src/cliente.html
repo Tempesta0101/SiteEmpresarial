@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Área do Cliente</title>
+  <link rel="stylesheet" href="/tailwind.css">
+</head>
+<body class="min-h-screen bg-background text-foreground font-sans flex flex-col items-center justify-center">
+  <main class="w-full max-w-md p-8 bg-card rounded-xl shadow-xl mt-12">
+    <h1 class="text-2xl font-bold mb-6 text-center">Área do Cliente</h1>
+    <!-- Login/Cadastro -->
+    <form id="authForm" class="flex flex-col gap-4 mb-8">
+      <input type="email" id="email" placeholder="E-mail" required class="input input-bordered" />
+      <input type="password" id="password" placeholder="Senha" required class="input input-bordered" />
+      <button type="submit" class="btn bg-primary text-primary-foreground font-semibold">Entrar / Cadastrar</button>
+      <span id="authError" class="text-red-500 text-sm"></span>
+    </form>
+    <!-- Dados do Cliente -->
+    <div id="clientArea" class="hidden flex flex-col gap-4">
+      <div>
+        <span class="font-semibold">Plano ativo:</span> <span id="plano"></span>
+      </div>
+      <div>
+        <span class="font-semibold">Status da assinatura:</span> <span id="status"></span>
+      </div>
+      <div>
+        <span class="font-semibold">Histórico de pagamentos:</span>
+        <ul id="pagamentos" class="list-disc pl-5 text-sm"></ul>
+      </div>
+      <button id="cancelarBtn" class="btn bg-red-600 text-white font-semibold mt-4">Cancelar assinatura</button>
+      <span id="cancelMsg" class="text-green-600 text-sm"></span>
+    </div>
+  </main>
+  <script>
+  const API_URL = '/api';
+  const authForm = document.getElementById('authForm');
+  const clientArea = document.getElementById('clientArea');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const authError = document.getElementById('authError');
+  const planoSpan = document.getElementById('plano');
+  const statusSpan = document.getElementById('status');
+  const pagamentosUl = document.getElementById('pagamentos');
+  const cancelarBtn = document.getElementById('cancelarBtn');
+  const cancelMsg = document.getElementById('cancelMsg');
+  let token = '';
+
+  authForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    authError.textContent = '';
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    try {
+      // Tenta login
+      let res = await fetch(API_URL + '/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      let data = await res.json();
+      if (res.ok && data.token) {
+        token = data.token;
+      } else {
+        // Se não existe, faz cadastro
+        res = await fetch(API_URL + '/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        data = await res.json();
+        if (res.ok && data.token) {
+          token = data.token;
+        } else {
+          throw new Error(data.error || 'Erro ao autenticar');
+        }
+      }
+      authForm.classList.add('hidden');
+      clientArea.classList.remove('hidden');
+      await carregarDadosCliente();
+    } catch (err) {
+      authError.textContent = err.message;
+    }
+  });
+
+  async function carregarDadosCliente() {
+    try {
+      const res = await fetch(API_URL + '/cliente', {
+        headers: { Authorization: 'Bearer ' + token }
+      });
+      const data = await res.json();
+      planoSpan.textContent = data.plano || '-';
+      statusSpan.textContent = data.status || '-';
+      pagamentosUl.innerHTML = (data.pagamentos || []).map(p => `<li>R$${p.valor} - ${p.data}</li>`).join('');
+    } catch (err) {
+      planoSpan.textContent = '-';
+      statusSpan.textContent = '-';
+      pagamentosUl.innerHTML = '';
+    }
+  }
+
+  cancelarBtn.addEventListener('click', async function() {
+    try {
+      const res = await fetch(API_URL + '/cancelar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token }
+      });
+      const data = await res.json();
+      if (res.ok) {
+        statusSpan.textContent = 'Cancelada';
+        cancelMsg.textContent = 'Assinatura cancelada com sucesso!';
+      } else {
+        cancelMsg.textContent = data.error || 'Erro ao cancelar.';
+      }
+    } catch (err) {
+      cancelMsg.textContent = err.message;
+    }
+  });
+  </script>
+</body>
+</html>

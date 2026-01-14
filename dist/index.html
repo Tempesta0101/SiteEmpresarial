@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site Empresarial Gamer</title>
+    <link href="./styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen flex flex-col bg-background text-foreground font-sans">
+    <header class="w-full py-6 bg-primary text-primary-foreground text-center text-3xl font-bold shadow-lg animate-fade-in">
+      Bem-vindo ao Site Empresarial Gamer
+    </header>
+    <main class="flex-1 flex flex-col items-center justify-center gap-8 px-4">
+      <!-- Hero Section -->
+      <section class="bg-card text-card-foreground rounded-xl p-8 shadow-xl max-w-2xl w-full animate-fade-in-up mt-8">
+        <h1 class="text-4xl font-extrabold mb-4">Seu Negócio, Seu Jogo</h1>
+        <p class="text-lg mb-6">Transforme sua presença digital com um visual gamer moderno, cores vibrantes e animações dinâmicas.</p>
+        <a href="#planos" class="inline-block px-6 py-3 rounded-lg bg-accent text-accent-foreground font-semibold shadow hover:bg-accent/80 transition">Saiba Mais</a>
+      </section>
+      <!-- Demonstração -->
+      <section class="flex flex-col md:flex-row gap-8 items-center w-full max-w-4xl mt-8 animate-fade-in-up">
+        <div class="flex-1">
+          <video class="rounded-lg shadow-lg w-full" controls poster="https://dummyimage.com/600x340/222/fff&text=Demo+do+Produto">
+            <source src="demo.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo.
+          </video>
+        </div>
+        <div class="flex-1">
+          <h2 class="text-2xl font-bold mb-2">Veja o sistema em ação</h2>
+          <p class="mb-4">Demonstração rápida mostrando como seu produto resolve problemas reais e entrega resultados.</p>
+          <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
+            <li>Interface intuitiva e responsiva</li>
+            <li>Automação de tarefas</li>
+            <li>Relatórios em tempo real</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Funcionalidades -->
+      <section class="w-full max-w-4xl mt-8 animate-fade-in-up">
+        <h2 class="text-2xl font-bold mb-4">Funcionalidades</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-secondary text-secondary-foreground rounded-lg p-6 shadow flex flex-col items-center">
+            <span class="text-4xl mb-2">⚡</span>
+            <h3 class="font-semibold mb-1">Performance</h3>
+            <p class="text-sm text-muted-foreground">Sistema rápido e otimizado para alta demanda.</p>
+          </div>
+          <div class="bg-secondary text-secondary-foreground rounded-lg p-6 shadow flex flex-col items-center">
+            <span class="text-4xl mb-2">🔒</span>
+            <h3 class="font-semibold mb-1">Segurança</h3>
+            <p class="text-sm text-muted-foreground">Proteção de dados e autenticação avançada.</p>
+          </div>
+          <div class="bg-secondary text-secondary-foreground rounded-lg p-6 shadow flex flex-col items-center">
+            <span class="text-4xl mb-2">🤝</span>
+            <h3 class="font-semibold mb-1">Suporte</h3>
+            <p class="text-sm text-muted-foreground">Atendimento ágil e especializado.</p>
+          </div>
+        </div>
+      </section>
+      <!-- Prova Social -->
+      <section class="w-full max-w-4xl mt-8 animate-fade-in-up">
+        <h2 class="text-2xl font-bold mb-4">Clientes Satisfeitos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <blockquote class="bg-card text-card-foreground rounded-lg p-6 shadow">
+            <p class="mb-2">“O sistema revolucionou nosso atendimento e aumentou as vendas!”</p>
+            <footer class="text-sm text-muted-foreground">— Cliente A</footer>
+          </blockquote>
+          <blockquote class="bg-card text-card-foreground rounded-lg p-6 shadow">
+            <p class="mb-2">“Fácil de usar, seguro e com suporte excelente.”</p>
+            <footer class="text-sm text-muted-foreground">— Cliente B</footer>
+          </blockquote>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-6 items-center">
+          <img src="https://dummyimage.com/100x40/222/fff&text=Logo+1" alt="Logo 1" class="h-10" />
+          <img src="https://dummyimage.com/100x40/222/fff&text=Logo+2" alt="Logo 2" class="h-10" />
+          <img src="https://dummyimage.com/100x40/222/fff&text=Logo+3" alt="Logo 3" class="h-10" />
+        </div>
+      </section>
+      <!-- Preços / Planos -->
+      <section id="planos" class="w-full max-w-4xl mt-8 animate-fade-in-up">
+        <h2 class="text-2xl font-bold mb-4">Planos e Preços</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-card text-card-foreground rounded-lg p-6 shadow flex flex-col items-center border-2 border-border">
+            <h3 class="font-semibold mb-2">Básico</h3>
+            <p class="text-3xl font-bold mb-2">R$49/mês</p>
+            <ul class="text-sm text-muted-foreground mb-4 space-y-1">
+              <li>Funcionalidades essenciais</li>
+              <li>Suporte padrão</li>
+            </ul>
+            <button onclick="startCheckout('Básico')" class="px-4 py-2 rounded bg-primary text-primary-foreground font-semibold hover:bg-primary/80 transition">Assinar</button>
+          </div>
+          <div class="bg-accent text-accent-foreground rounded-lg p-6 shadow flex flex-col items-center border-4 border-ring scale-105">
+            <h3 class="font-semibold mb-2">Profissional</h3>
+            <p class="text-3xl font-bold mb-2">R$99/mês</p>
+            <ul class="text-sm text-muted-foreground mb-4 space-y-1">
+              <li>Todas do Básico</li>
+              <li>Automação avançada</li>
+              <li>Suporte prioritário</li>
+            </ul>
+            <button onclick="startCheckout('Profissional')" class="px-4 py-2 rounded bg-primary text-primary-foreground font-semibold hover:bg-primary/80 transition">Assinar</button>
+          </div>
+          <div class="bg-card text-card-foreground rounded-lg p-6 shadow flex flex-col items-center border-2 border-border">
+            <h3 class="font-semibold mb-2">Premium</h3>
+            <p class="text-3xl font-bold mb-2">R$199/mês</p>
+            <ul class="text-sm text-muted-foreground mb-4 space-y-1">
+              <li>Todas do Profissional</li>
+              <li>Consultoria dedicada</li>
+              <li>Suporte 24/7</li>
+            </ul>
+            <button onclick="startCheckout('Premium')" class="px-4 py-2 rounded bg-primary text-primary-foreground font-semibold hover:bg-primary/80 transition">Assinar</button>
+              <script>
+                let selectedPlan = null;
+                function startCheckout(plan) {
+                  selectedPlan = plan;
+                  document.getElementById('checkout-modal').classList.remove('hidden');
+                  document.getElementById('checkout-plan').textContent = plan;
+                }
+
+                function closeModal() {
+                  document.getElementById('checkout-modal').classList.add('hidden');
+                }
+
+                function submitCheckoutForm(e) {
+                  e.preventDefault();
+                  const name = document.getElementById('checkout-name').value;
+                  const email = document.getElementById('checkout-email').value;
+                  if (!name || !email) {
+                    alert('Preencha nome e e-mail.');
+                    return;
+                  }
+                  fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan: selectedPlan, name, email })
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                    if (data.url) {
+                      window.location.href = data.url;
+                    } else {
+                      alert(data.error || 'Erro ao iniciar checkout.');
+                    }
+                  })
+                  .catch(() => alert('Erro ao iniciar checkout.'));
+                }
+                  <!-- Modal de checkout -->
+                  <div id="checkout-modal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 hidden">
+                    <form class="bg-card text-card-foreground rounded-xl p-8 shadow-xl w-full max-w-md relative animate-fade-in-up" onsubmit="submitCheckoutForm(event)">
+                      <button type="button" onclick="closeModal()" class="absolute top-2 right-4 text-2xl">&times;</button>
+                      <h2 class="text-2xl font-bold mb-4">Finalizar Assinatura</h2>
+                      <div class="mb-2">
+                        <span class="font-semibold">Plano selecionado:</span> <span id="checkout-plan"></span>
+                      </div>
+                      <div class="mb-4">
+                        <label class="block mb-1" for="checkout-name">Nome</label>
+                        <input id="checkout-name" name="name" type="text" class="w-full px-3 py-2 rounded border border-border bg-background text-foreground" required />
+                      </div>
+                      <div class="mb-4">
+                        <label class="block mb-1" for="checkout-email">E-mail</label>
+                        <input id="checkout-email" name="email" type="email" class="w-full px-3 py-2 rounded border border-border bg-background text-foreground" required />
+                      </div>
+                      <button type="submit" class="w-full px-4 py-2 rounded bg-primary text-primary-foreground font-semibold hover:bg-primary/80 transition">Ir para pagamento</button>
+                    </form>
+                  </div>
+              </script>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="w-full py-4 bg-sidebar text-sidebar-foreground text-center text-sm mt-8">
+      &copy; 2026 Site Empresarial Gamer — <a href="#" class="underline">Contato</a> | <a href="#" class="underline">FAQ</a> | <a href="#" class="underline">Política de Privacidade</a>
+    </footer>
+  </body>
+</html>
